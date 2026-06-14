@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base resets ─────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: #E9EBE6;
+    color: #061414;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+/* ── Utility layer extras ────────────────────────────── */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .font-titillum {
+    font-family: 'Titillium Web', sans-serif;
+  }
+
+  .font-titillum-black {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 900;
+  }
+
+  .font-titillum-semibold {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 600;
+  }
+
+  /* Gradient text for pear-coloured headings */
+  .text-gradient-pear {
+    background: linear-gradient(135deg, #BCFF00 0%, #d4ff4d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Subtle pear glow */
+  .glow-pear {
+    text-shadow: 0 0 40px rgba(188, 255, 0, 0.35);
+  }
+
+  /* Typewriting animation effect */
+  .typing-effect {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2.5px solid #BCFF00;
+    width: 0;
+    animation: 
+      typing-text 2s steps(18, end) 0.5s forwards,
+      blink-cursor 0.75s step-end infinite;
+  }
+
+  @keyframes typing-text {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink-cursor {
+    from, to { border-color: transparent; }
+    50% { border-color: #BCFF00; }
+  }
+
+  /* Sequential three-line typing animations (No cursor line) */
+  .typing-line-1 {
+    display: inline-block;
+    width: max-content;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing-l1 1.2s steps(20, end) 0.5s forwards;
+  }
+
+  .typing-line-2 {
+    display: inline-block;
+    width: max-content;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing-l2 0.8s steps(15, end) 1.7s forwards;
+  }
+
+  .typing-line-3 {
+    display: inline-block;
+    width: max-content;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing-l3 1.2s steps(20, end) 2.5s forwards;
+  }
+
+  @keyframes typing-l1 { from { max-width: 0; } to { max-width: 100%; } }
+  @keyframes typing-l2 { from { max-width: 0; } to { max-width: 100%; } }
+  @keyframes typing-l3 { from { max-width: 0; } to { max-width: 100%; } }
+}
+
+/* ── Custom Scrollbar ─────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #BCFF00;
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(188, 255, 0, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4ff4d;
+  box-shadow: 0 0 14px rgba(188, 255, 0, 0.7);
+}
+
+::-webkit-scrollbar-corner {
+  background: #0a1a1a;
+}
+
