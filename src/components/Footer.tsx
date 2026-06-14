@@ -34,7 +34,6 @@ const socialLinks: SocialLink[] = [
   }
 ]
 
-
 export default function Footer() {
   return (
     <footer
@@ -42,7 +41,6 @@ export default function Footer() {
       className="bg-rich-black text-white pt-6 pb-3 lg:pt-8 lg:pb-3 relative overflow-hidden border-t border-white/5 lg:h-[88vh] flex flex-col justify-between"
       aria-label="Site Footer"
     >
-      {/* Background glow decorator */}
       <div
         className="absolute right-[-10%] bottom-[-10%] w-96 h-96 rounded-full opacity-[0.03] pointer-events-none filter blur-[90px]"
         style={{ background: 'radial-gradient(circle, #BCFF00 0%, transparent 70%)' }}
@@ -50,8 +48,7 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
 
-        {/* Brand Column */}
-        <div className="lg:col-span-2 flex flex-col items-start gap-6">
+        <div className="md:col-span-2 lg:col-span-2 flex flex-col items-start gap-6">
           <a href="#home" className="flex items-center gap-2 group shrink-0 mt-1.5" aria-label="IronCore Fitness Home">
             <img
               src="/ironcore-logo.png"
@@ -64,7 +61,6 @@ export default function Footer() {
             Empowering your physical journey through expert-led training program designs, advanced metrics, and elite-level gym coaching facilities.
           </p>
 
-          {/* Social Links */}
           <div className="flex items-center gap-3 mt-2">
             {socialLinks.map(({ name, href, icon }) => (
               <a
@@ -74,11 +70,8 @@ export default function Footer() {
                 className="group relative w-9 h-9 rounded-full bg-white/5 border border-white/10 hover:bg-pear hover:text-rich-black hover:border-pear text-white flex items-center justify-center transition-all duration-300 active:scale-95 hover:-translate-y-0.5"
               >
                 {icon}
-                
-                {/* Tooltip Popup */}
                 <span className="absolute bottom-full mb-2.5 scale-0 group-hover:scale-100 transition-all duration-200 rounded-md bg-rich-black border border-white/15 px-2.5 py-1 text-[0.65rem] font-bold font-body tracking-wider uppercase text-pear pointer-events-none whitespace-nowrap shadow-lg z-20 origin-bottom">
                   {name}
-                  {/* Tooltip Arrow */}
                   <span className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-rich-black" />
                 </span>
               </a>
@@ -86,7 +79,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Menus Column */}
         <div>
           <div className="flex items-center gap-2 mb-6">
             <span className="w-5 h-[2px] bg-pear rounded-full" />
@@ -117,7 +109,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Contact Column */}
         <div>
           <div className="flex items-center gap-2 mb-6">
             <span className="w-5 h-[2px] bg-pear rounded-full" />
@@ -161,24 +152,21 @@ export default function Footer() {
 
       </div>
 
-      {/* Bottom Row */}
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-10 mt-auto relative z-10 flex flex-col items-center">
         <div className="w-full h-px bg-white/5 mt-4 mb-6" />
-        
-        {/* Massive Centered Branding Text (In-Flow Layout) */}
+
         <div className="w-full text-center select-none pointer-events-none mb-3 overflow-hidden">
-          <span 
-            className="block text-[16vw] font-titillum font-black text-white/[0.03] uppercase tracking-[0.08em] leading-none whitespace-nowrap"
+          <span
+            className="block text-[12vw] md:text-[16vw] font-titillum font-black text-white/[0.03] uppercase tracking-[0.08em] leading-none whitespace-nowrap"
             style={{ textShadow: '0 0 40px rgba(188,255,0,0.01)' }}
           >
             IRONCORE
           </span>
         </div>
 
-        {/* Copyrights and Privacy Links at the absolute bottom */}
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-[0.8rem] font-body text-laurel/60 pb-3 lg:pb-3 mt-1">
-          <p>© 2026 IronCore Fitness. All Rights Reserved.</p>
-          <div className="flex items-center gap-6">
+        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-[0.75rem] md:text-[0.8rem] font-body text-laurel/60 pb-7 md:pb-3 mt-4 md:mt-1 text-center md:text-left">
+          <p className="w-full md:w-auto text-center md:text-left">© 2026 IronCore Fitness. All Rights Reserved.</p>
+          <div className="flex items-center justify-center md:justify-end gap-6 w-full md:w-auto">
             <a href="#privacy" className="hover:text-pear transition-colors duration-200">Privacy Policy</a>
             <a href="#terms" className="hover:text-pear transition-colors duration-200">Terms of Service</a>
           </div>

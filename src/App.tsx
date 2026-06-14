@@ -16,8 +16,6 @@ function App() {
       const scrollHeight = document.documentElement.scrollHeight
       const clientHeight = document.documentElement.clientHeight
       const scrollTop = window.scrollY || document.documentElement.scrollTop
-      
-      // Show when user is close to the bottom (within 120px of total scrollable height)
       const isAtBottom = scrollTop + clientHeight >= scrollHeight - 120
       setShowScrollTop(isAtBottom)
     }
@@ -35,9 +33,9 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-ceiling-white relative">
+    <div className="min-h-screen bg-ceiling-white relative overflow-x-hidden">
       <Navbar />
-      <main>
+      <main className="overflow-x-hidden">
         <HeroSection />
         <AboutSection />
         <TrainersSection />
@@ -46,7 +44,6 @@ function App() {
       </main>
       <Footer />
 
-      {/* Floating Scroll to Top Arrow Button */}
       <button
         onClick={scrollToTop}
         aria-label="Scroll to top of page"
@@ -54,19 +51,17 @@ function App() {
           fixed bottom-20 right-6 lg:bottom-24 lg:right-8 z-50
           w-11 h-11 rounded-full cursor-pointer group
           transition-all duration-300 ease-out active:scale-95
-          ${showScrollTop 
-            ? 'opacity-100 scale-100 translate-y-0' 
+          ${showScrollTop
+            ? 'opacity-100 scale-100 translate-y-0'
             : 'opacity-0 scale-90 translate-y-4 pointer-events-none'}
         `}
       >
-        {/* Outer glow ring */}
         <span className="absolute inset-0 rounded-full bg-pear/20 animate-ping" />
-        {/* Inner button */}
         <span className="relative flex items-center justify-center w-full h-full rounded-full bg-pear shadow-[0_0_18px_rgba(188,255,0,0.45)] group-hover:shadow-[0_0_28px_rgba(188,255,0,0.7)] transition-shadow duration-300">
-          <svg 
-            className="w-4 h-4 stroke-rich-black transform group-hover:-translate-y-0.5 transition-transform duration-300" 
-            fill="none" 
-            strokeWidth="3" 
+          <svg
+            className="w-4 h-4 stroke-rich-black transform group-hover:-translate-y-0.5 transition-transform duration-300"
+            fill="none"
+            strokeWidth="3"
             viewBox="0 0 24 24"
           >
             <polyline points="18 15 12 9 6 15" />

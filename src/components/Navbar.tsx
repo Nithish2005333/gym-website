@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Menu, X } from 'lucide-react'
 
 const navLinks = [
   { label: 'Home',            href: '#home' },
@@ -40,10 +41,8 @@ export default function Navbar() {
     const onScroll = () => {
       setScrolled(window.scrollY > 20)
 
-      // Calculate scroll position trigger point (e.g., 33% down the viewport)
       const scrollPosition = window.scrollY + window.innerHeight / 3
 
-      // Fallback for reaching the absolute bottom of the page
       const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100
       if (isAtBottom) {
         setActiveLink('#pricing')
@@ -64,7 +63,7 @@ export default function Navbar() {
     }
 
     window.addEventListener('scroll', onScroll, { passive: true })
-    onScroll() // Initial run to set active link
+    onScroll()
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -96,30 +95,27 @@ export default function Navbar() {
             : 'bg-ceiling-white/80 backdrop-blur-sm'}
         `}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-[75px]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between h-[75px]">
 
-          {/* Logo */}
           <a
             href="#home"
             onClick={() => handleNavClick('#home')}
-            className="flex items-center gap-2 group shrink-0"
+            className="flex items-center gap-2 group shrink-0 max-w-[140px] xs:max-w-none"
             aria-label="IronCore Fitness Home"
           >
             <img
               src="/ironcore-logo.png"
               alt="IronCore Logo"
-              className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-7 lg:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               style={{ filter: 'invert(1) hue-rotate(180deg)' }}
             />
           </a>
 
-          {/* Desktop nav links */}
-          <nav 
+          <nav
             ref={containerRef}
-            className="hidden lg:flex items-center gap-1.5 font-body font-bold relative bg-rich-black/[0.04] p-1 rounded-full border border-celeste/20" 
+            className="hidden lg:flex items-center gap-1.5 font-body font-bold relative bg-rich-black/[0.04] p-1 rounded-full border border-celeste/20"
             aria-label="Primary navigation"
           >
-            {/* Sliding background pill */}
             {activeRect && (
               <div
                 className="absolute top-1 bottom-1 bg-rich-black rounded-full transition-all duration-300 ease-out z-0"
@@ -153,7 +149,6 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* CTA — Uiverse.io Animated Join Now Button */}
           <a
             href="#pricing"
             onClick={() => handleNavClick('#pricing')}
@@ -174,23 +169,23 @@ export default function Navbar() {
             </div>
           </a>
 
-          {/* Mobile hamburger */}
           <button
             id="mobile-menu-btn"
             type="button"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(v => !v)}
-            className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px]"
+            className="lg:hidden flex items-center justify-center w-10 h-10 text-rich-black hover:text-pear transition-colors shrink-0 z-50 relative"
           >
-            <span className={`block w-5 h-[2px] bg-rich-black rounded-full origin-center transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
-            <span className={`block w-5 h-[2px] bg-rich-black rounded-full transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
-            <span className={`block w-5 h-[2px] bg-rich-black rounded-full origin-center transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+            {menuOpen ? (
+              <X className="w-6 h-6 stroke-current" strokeWidth={2.5} />
+            ) : (
+              <Menu className="w-6 h-6 stroke-current" strokeWidth={2.5} />
+            )}
           </button>
         </div>
       </header>
 
-      {/* Mobile overlay */}
       <div
         aria-hidden={!menuOpen}
         onClick={() => setMenuOpen(false)}
@@ -201,7 +196,6 @@ export default function Navbar() {
         `}
       />
 
-      {/* Mobile drawer */}
       <div
         id="mobile-menu"
         className={`
@@ -215,7 +209,18 @@ export default function Navbar() {
       >
         <div className="absolute top-0 left-0 w-full h-[3px] bg-pear" />
 
-        <nav className="flex flex-col gap-0 mt-6" aria-label="Mobile navigation">
+        <div className="flex items-center justify-between pt-4 pb-2 px-1 mb-2">
+          <span className="font-titillum font-black text-[0.65rem] tracking-[0.2em] uppercase text-rich-black/40">MENU</span>
+          <button
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-rich-black/5 hover:bg-pear hover:text-rich-black text-rich-black/60 transition-all duration-200"
+          >
+            <X className="w-4 h-4 stroke-current" strokeWidth={2.5} />
+          </button>
+        </div>
+
+        <nav className="flex flex-col gap-0" aria-label="Mobile navigation">
           {navLinks.map(({ label, href }, i) => (
             <a
               key={href}

@@ -39,24 +39,21 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative min-h-[80vh] flex flex-col justify-center bg-white border-y border-celeste/20 py-16 lg:py-12 overflow-hidden"
+      className="relative min-h-[80vh] flex flex-col justify-center bg-white border-y border-celeste/20 py-10 lg:py-12 lg:overflow-hidden"
       aria-label="About Us"
     >
-      {/* Background decoration elements */}
-      <div 
+      <div
         className="absolute right-0 top-0 w-80 h-80 rounded-full opacity-10 pointer-events-none filter blur-[80px]"
         style={{ background: 'radial-gradient(circle, #BCFF00 0%, transparent 70%)' }}
       />
-      <div 
+      <div
         className="absolute left-0 bottom-0 w-80 h-80 rounded-full opacity-10 pointer-events-none filter blur-[80px]"
         style={{ background: 'radial-gradient(circle, #BCFF00 0%, transparent 70%)' }}
       />
 
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-10 relative z-10">
-        
-        {/* Header Block (above the columns) */}
+
         <div className="mb-8 text-left">
-          {/* Subtitle Badge */}
           <div className="flex items-center gap-2 mb-5 select-none">
             <span className="w-5 h-[2px] bg-rich-black rounded-full shrink-0" />
             <span className="font-titillum text-[0.75rem] tracking-[0.18em] uppercase text-rich-black" style={{ fontWeight: 600 }}>
@@ -64,8 +61,7 @@ export default function AboutSection() {
             </span>
           </div>
 
-          {/* Headline */}
-          <h2 
+          <h2
             className="leading-[1.0] text-rich-black mb-6 uppercase tracking-[-0.01em]"
             style={{ fontFamily: '"Titillium Web", sans-serif', fontWeight: 900, fontSize: 'clamp(2.2rem,4vw,3.5rem)' }}
           >
@@ -74,28 +70,26 @@ export default function AboutSection() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          
-          {/* LEFT — Image showcase */}
+
           <div className="relative group">
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-pear to-celeste opacity-20 group-hover:opacity-30 blur-sm transition duration-300" />
             <div className="relative rounded-2xl overflow-hidden border border-celeste bg-ceiling-white">
               <img
                 src="/about-gym.png"
                 alt="State-of-the-art training facility at IronCore"
-                className="w-full h-[320px] sm:h-[400px] lg:h-[430px] object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-[260px] sm:h-[360px] lg:h-[430px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              
-              {/* Glassmorphic float card */}
-              <div 
+
+              <div
                 className="
-                  absolute bottom-6 right-6 
-                  bg-white/85 backdrop-blur-md border border-celeste/30 
-                  px-5 py-4 rounded-2xl shadow-lg 
+                  absolute bottom-4 right-4 sm:bottom-6 sm:right-6
+                  bg-white/85 backdrop-blur-md border border-celeste/30
+                  px-4 py-3 sm:px-5 sm:py-4 rounded-2xl shadow-lg
                   hover:scale-[1.02] transition-transform duration-300
                   text-center select-none
                 "
               >
-                <p 
+                <p
                   className="text-[1.8rem] text-rich-black leading-none tracking-tight uppercase"
                   style={{ fontFamily: '"Titillium Web", sans-serif', fontWeight: 900 }}
                 >
@@ -106,10 +100,8 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* RIGHT — Text and pillars list */}
           <div className="flex flex-col justify-center">
-            
-            {/* Description */}
+
             <div className="space-y-4 mb-8 text-[0.92rem] text-rich-black/75 font-body leading-relaxed max-w-xl">
               <p>
                 At IronCore, we believe fitness is not just about physical strength; it is a test of resilience, character, and mental fortitude. We provide a space where athletes and driven individuals can push beyond their limits under science-backed performance programs.
@@ -119,7 +111,6 @@ export default function AboutSection() {
               </p>
             </div>
 
-            {/* Pillars */}
             <div className="flex flex-col gap-6">
               {pillars.map((p, idx) => (
                 <div key={idx} className="flex gap-4 items-start group">

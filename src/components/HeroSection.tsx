@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Users, Dumbbell } from 'lucide-react'
 
-/* ── Animated counter ───────────────────────────────────── */
 function useCountUp(target: number, duration = 1800) {
   const ref = useRef<HTMLSpanElement>(null)
   useEffect(() => {
@@ -20,14 +19,10 @@ function useCountUp(target: number, duration = 1800) {
   return ref
 }
 
-
-
-
 function StatVal({ value }: { value: number }) {
   const ref = useCountUp(value)
   return <span ref={ref}>0</span>
 }
-
 
 const typingWords = ['YOU', 'ATHLETES', 'CHAMPIONS', 'WARRIORS', 'DREAMERS']
 
@@ -74,7 +69,6 @@ function TypingWord() {
   )
 }
 
-
 export default function HeroSection() {
   const textRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLDivElement>(null)
@@ -97,21 +91,9 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col overflow-hidden"
-      style={{
-        backgroundColor: '#E9EBE6',
-        backgroundImage: 'url("/hero-bg.png")',
-        backgroundSize: '90%',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
+      className="relative min-h-screen flex flex-col lg:overflow-hidden bg-ceiling-white lg:bg-[url('/hero-bg.png')] bg-center bg-no-repeat lg:bg-[length:90%]"
       aria-label="Hero"
     >
-      {/* ── Background decoration elements ──────────────── */}
-
-
-
-      {/* Large backdrop glow circle with stripes */}
       <div
         className="absolute right-[4%] top-[10%] w-[38vw] h-[38vw] rounded-full -z-10 overflow-hidden hidden lg:block"
         style={{
@@ -127,7 +109,6 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Subtle pear gradient glow behind text */}
       <div
         className="absolute left-[3%] top-[18%] w-[400px] h-[400px] rounded-full -z-10 pointer-events-none opacity-60 filter blur-[90px]"
         style={{
@@ -135,16 +116,11 @@ export default function HeroSection() {
         }}
       />
 
-
-
-      {/* ── Main content grid ────────────────────────────── */}
       <div className="relative z-10 flex-1 flex items-center max-w-7xl mx-auto w-full px-6 lg:px-10 pt-[70px]">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-0 w-full items-center min-h-[calc(100vh-70px)]">
 
-          {/* LEFT — text section */}
-          <div ref={textRef} className="flex flex-col justify-center py-16 lg:py-0 lg:pr-8 order-2 lg:order-1 relative">
+          <div ref={textRef} className="flex flex-col justify-center pt-2 pb-16 lg:py-0 lg:pr-8 order-2 lg:order-1 relative">
 
-            {/* Subtitle Badge */}
             <div className="flex items-center gap-2 mb-5 mt-8 select-none">
               <span className="w-5 h-[2px] bg-rich-black rounded-full shrink-0" />
               <span className="font-titillum text-[0.75rem] tracking-[0.18em] uppercase text-rich-black" style={{ fontWeight: 600 }}>
@@ -161,19 +137,15 @@ export default function HeroSection() {
               <span className="block">BECOME BETTER</span>
             </h1>
 
-            {/* Green accent line */}
             <div className="w-16 h-[4px] bg-pear rounded-full mb-6" />
 
-            {/* Sub-copy */}
             <p className="text-[0.92rem] text-rich-black/75 font-body leading-relaxed max-w-lg mb-6" style={{ fontWeight: 400 }}>
               Welcome to the place where health and fitness is a way of life!
               Improve your quality of life, get ready to change your life and step
               into the amazing world of fitness!
             </p>
 
-            {/* CTA buttons */}
             <div className="flex flex-wrap items-center gap-5 mb-8">
-              {/* Uiverse.io Animated Start Now Button */}
               <a
                 id="hero-cta-primary"
                 href="#pricing"
@@ -194,7 +166,6 @@ export default function HeroSection() {
                 </div>
               </a>
 
-              {/* Premium Minimalist Explore More Button */}
               <a
                 id="hero-cta-secondary"
                 href="#about"
@@ -210,13 +181,13 @@ export default function HeroSection() {
                 style={{ fontWeight: 500 }}
               >
                 Explore More
-                <svg 
-                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2.5" 
-                  strokeLinecap="round" 
+                <svg
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                 >
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -225,15 +196,42 @@ export default function HeroSection() {
               </a>
             </div>
 
+            <div className="flex lg:hidden items-center justify-around w-full max-w-md mt-6 py-4 px-4 bg-white/45 backdrop-blur-md border border-white/25 rounded-2xl shadow-sm gap-2 select-none">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-rich-black flex items-center justify-center shrink-0">
+                  <Users className="w-5 h-5 text-pear" strokeWidth={2} />
+                </div>
+                <div>
+                  <div className="flex items-baseline gap-0.5 leading-none">
+                    <span className="font-titillum text-[1.25rem] text-rich-black" style={{ fontWeight: 900 }}><StatVal value={12} /></span>
+                    <span className="font-titillum text-[0.85rem] text-pear" style={{ fontWeight: 900 }}>K+</span>
+                  </div>
+                  <p className="text-[0.6rem] font-bold text-laurel font-body uppercase tracking-wider mt-0.5">Members</p>
+                </div>
+              </div>
+
+              <div className="w-px h-10 bg-rich-black/15" />
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-rich-black flex items-center justify-center shrink-0">
+                  <Dumbbell className="w-5 h-5 text-pear" strokeWidth={2} />
+                </div>
+                <div>
+                  <div className="flex items-baseline gap-0.5 leading-none">
+                    <span className="font-titillum text-[1.25rem] text-rich-black" style={{ fontWeight: 900 }}><StatVal value={50} /></span>
+                    <span className="font-titillum text-[0.85rem] text-pear" style={{ fontWeight: 900 }}>+</span>
+                  </div>
+                  <p className="text-[0.6rem] font-bold text-laurel font-body uppercase tracking-wider mt-0.5">Trainers</p>
+                </div>
+              </div>
+            </div>
 
           </div>
 
-          {/* RIGHT — athlete image section */}
           <div
             ref={imageRef}
-            className="relative flex items-end justify-center lg:justify-end order-1 lg:order-2 h-[52vh] lg:h-[calc(100vh-70px)] lg:translate-x-[-10%]"
+            className="hidden lg:flex relative items-end justify-end order-1 lg:order-2 lg:h-[calc(100vh-70px)] lg:translate-x-[-10%]"
           >
-            {/* Athlete main image */}
             <img
               src="/hero.png"
               alt="Elite athlete training at IronCore Fitness"
@@ -241,10 +239,8 @@ export default function HeroSection() {
               draggable={false}
             />
 
-            {/* Vertical stats — no card, items float on hero */}
-            <div className="absolute top-[6%] right-2 lg:right-[-50px] flex flex-col items-center gap-0 z-20 w-[110px]">
+            <div className="hidden lg:flex absolute top-[6%] right-[-50px] flex-col items-center gap-0 z-20 w-[110px] select-none">
 
-              {/* 12K+ Members */}
               <div className="flex flex-col items-center justify-center py-4 px-3 w-full text-center">
                 <div className="w-10 h-10 rounded-xl bg-rich-black flex items-center justify-center mb-2">
                   <Users className="w-5 h-5 text-pear" strokeWidth={2} />
@@ -256,10 +252,8 @@ export default function HeroSection() {
                 <p className="text-[0.6rem] font-bold text-laurel font-body uppercase tracking-wider mt-1">Members</p>
               </div>
 
-              {/* Divider */}
               <div className="w-[75%] h-px bg-rich-black/15 my-1" />
 
-              {/* 50+ Trainers */}
               <div className="flex flex-col items-center justify-center py-4 px-3 w-full text-center">
                 <div className="w-10 h-10 rounded-xl bg-rich-black flex items-center justify-center mb-2">
                   <Dumbbell className="w-5 h-5 text-pear" strokeWidth={2} />

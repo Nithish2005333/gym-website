@@ -1,16 +1,15 @@
 import { useState, useRef, useEffect } from 'react'
 import { Mail } from 'lucide-react'
 
-// Custom Instagram SVG Icon
 function InstagramIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
-    <svg 
-      className={className} 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
       strokeLinejoin="round"
     >
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -20,16 +19,15 @@ function InstagramIcon({ className = "w-6 h-6" }: { className?: string }) {
   )
 }
 
-// Custom WhatsApp SVG Icon (Line-art outline style)
 function WhatsappIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
-    <svg 
-      className={className} 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
       strokeLinejoin="round"
     >
       <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
@@ -126,7 +124,6 @@ export default function TrainersSection() {
     const container = containerRef.current
     if (!container) return
 
-    // Synchronize initial position
     scrollPosRef.current = container.scrollLeft
 
     let animationFrameId: number
@@ -145,7 +142,6 @@ export default function TrainersSection() {
       const elapsed = time - lastTime
       lastTime = time
 
-      // Speed: 0.05px per millisecond (50px/sec)
       const speed = 0.05
       scrollPosRef.current += speed * elapsed
 
@@ -195,20 +191,77 @@ export default function TrainersSection() {
     if (!container) return
 
     const x = e.pageX - container.offsetLeft
-    const walk = (x - startX) * 1.5 // multiplier to speed up dragging
+    const walk = (x - startX) * 1.5
     container.scrollLeft = scrollLeftStart - walk
     scrollPosRef.current = container.scrollLeft
   }
 
+  const trainerCard = (trainer: Trainer, keyPrefix: string) => (
+    <div
+      key={`${keyPrefix}-${trainer.id}`}
+      className="relative w-[240px] sm:w-[280px] aspect-[3/4] rounded-2xl overflow-hidden group border border-white/10 hover:border-pear bg-rich-black shadow-lg cursor-pointer transition-all duration-300 hover:shadow-[0_0_20px_rgba(188,255,0,0.15)] shrink-0"
+    >
+      <img
+        src={trainer.image}
+        alt={trainer.name}
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 select-none pointer-events-none"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-rich-black via-rich-black/85 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end pb-8 pt-24 px-6 text-center items-center">
+        <h3
+          className="text-[1.3rem] sm:text-[1.4rem] text-white uppercase tracking-wider mb-1.5 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out"
+          style={{
+            fontFamily: '"Titillium Web", sans-serif',
+            fontWeight: 700,
+            textShadow: '0 2px 6px rgba(0,0,0,0.9), -1px 0 0 rgba(0, 229, 255, 0.5), 1px 0 0 rgba(255, 0, 85, 0.5)'
+          }}
+        >
+          {trainer.name}
+        </h3>
+        <p
+          className="text-[0.82rem] text-pear font-semibold font-body tracking-wider uppercase mb-5 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-75"
+          style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}
+        >
+          {trainer.tagline}
+        </p>
+        <div className="flex items-center gap-6 mt-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-150">
+          <a
+            href={trainer.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/80 hover:text-pear hover:scale-115 transform transition-all duration-300 flex items-center justify-center"
+            aria-label={`${trainer.name} Instagram`}
+          >
+            <InstagramIcon className="w-7 h-7" />
+          </a>
+          <a
+            href={trainer.mail}
+            className="text-white/80 hover:text-pear hover:scale-115 transform transition-all duration-300 flex items-center justify-center"
+            aria-label={`Email ${trainer.name}`}
+          >
+            <Mail className="w-7 h-7" />
+          </a>
+          <a
+            href={trainer.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/80 hover:text-pear hover:scale-115 transform transition-all duration-300 flex items-center justify-center"
+            aria-label={`${trainer.name} WhatsApp`}
+          >
+            <WhatsappIcon className="w-8 h-8" />
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
-    <section 
-      id="trainers" 
-      className="bg-ceiling-white border-b border-celeste/20 lg:h-screen flex flex-col justify-center pt-16 pb-12 lg:pt-20 lg:pb-12 relative overflow-hidden"
+    <section
+      id="trainers"
+      className="bg-ceiling-white border-b border-celeste/20 lg:h-screen flex flex-col justify-center pt-16 pb-12 lg:pt-8 lg:pb-12 relative overflow-hidden"
       aria-label="Our Trainers"
     >
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-10 relative z-10">
-        
-        {/* Section Header */}
+
         <div className="mb-5 text-center">
           <div className="flex items-center gap-2 mb-2.5 select-none justify-center">
             <span className="w-5 h-[2px] bg-rich-black rounded-full shrink-0" />
@@ -217,19 +270,18 @@ export default function TrainersSection() {
             </span>
           </div>
 
-          <h2 
+          <h2
             className="leading-[1.0] text-rich-black mb-4.5 uppercase tracking-[-0.01em]"
             style={{ fontFamily: '"Titillium Web", sans-serif', fontWeight: 900, fontSize: 'clamp(2.2rem,4vw,3.5rem)' }}
           >
             OUR EXPERT <span className="text-pear">COACHES</span>
           </h2>
-          
+
           <div className="w-16 h-[4px] bg-pear rounded-full mx-auto" />
         </div>
 
-        {/* Carousel Container */}
         <div className="relative w-full mt-7 overflow-hidden">
-          <div 
+          <div
             ref={containerRef}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -238,126 +290,12 @@ export default function TrainersSection() {
             onMouseEnter={() => setIsHovered(true)}
             className="flex overflow-x-auto no-scrollbar py-4 select-none cursor-grab active:cursor-grabbing"
           >
-            {/* First Set */}
             <div className="flex gap-6 shrink-0 pr-6">
-              {trainers.map((trainer) => (
-                <div 
-                  key={`trainer-set1-${trainer.id}`}
-                  className="relative w-[240px] sm:w-[280px] aspect-[3/4] rounded-2xl overflow-hidden group border border-white/10 hover:border-pear bg-rich-black shadow-lg cursor-pointer transition-all duration-300 hover:shadow-[0_0_20px_rgba(188,255,0,0.15)] shrink-0"
-                >
-                  <img 
-                    src={trainer.image} 
-                    alt={trainer.name} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 select-none pointer-events-none"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-rich-black via-rich-black/85 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end pb-8 pt-24 px-6 text-center items-center">
-                    <h3 
-                      className="text-[1.3rem] sm:text-[1.4rem] text-white uppercase tracking-wider mb-1.5 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out"
-                      style={{ 
-                        fontFamily: '"Titillium Web", sans-serif', 
-                        fontWeight: 700,
-                        textShadow: '0 2px 6px rgba(0,0,0,0.9), -1px 0 0 rgba(0, 229, 255, 0.5), 1px 0 0 rgba(255, 0, 85, 0.5)'
-                      }}
-                    >
-                      {trainer.name}
-                    </h3>
-                    <p 
-                      className="text-[0.82rem] text-pear font-semibold font-body tracking-wider uppercase mb-5 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-75"
-                      style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}
-                    >
-                      {trainer.tagline}
-                    </p>
-                    <div className="flex items-center gap-6 mt-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-150">
-                      <a 
-                        href={trainer.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-white/80 hover:text-pear hover:scale-115 transform transition-all duration-300 flex items-center justify-center"
-                        aria-label={`${trainer.name} Instagram`}
-                      >
-                        <InstagramIcon className="w-7 h-7" />
-                      </a>
-                      <a 
-                        href={trainer.mail}
-                        className="text-white/80 hover:text-pear hover:scale-115 transform transition-all duration-300 flex items-center justify-center"
-                        aria-label={`Email ${trainer.name}`}
-                      >
-                        <Mail className="w-7 h-7" />
-                      </a>
-                      <a 
-                        href={trainer.whatsapp}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-white/80 hover:text-pear hover:scale-115 transform transition-all duration-300 flex items-center justify-center"
-                        aria-label={`${trainer.name} WhatsApp`}
-                      >
-                        <WhatsappIcon className="w-8 h-8" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
+              {trainers.map((trainer) => trainerCard(trainer, 'set1'))}
             </div>
 
-            {/* Second Set (Clone) */}
             <div className="flex gap-6 shrink-0 pr-6" aria-hidden="true">
-              {trainers.map((trainer) => (
-                <div 
-                  key={`trainer-set2-${trainer.id}`}
-                  className="relative w-[240px] sm:w-[280px] aspect-[3/4] rounded-2xl overflow-hidden group border border-white/10 hover:border-pear bg-rich-black shadow-lg cursor-pointer transition-all duration-300 hover:shadow-[0_0_20px_rgba(188,255,0,0.15)] shrink-0"
-                >
-                  <img 
-                    src={trainer.image} 
-                    alt={trainer.name} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 select-none pointer-events-none"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-rich-black via-rich-black/85 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end pb-8 pt-24 px-6 text-center items-center">
-                    <h3 
-                      className="text-[1.3rem] sm:text-[1.4rem] text-white uppercase tracking-wider mb-1.5 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out"
-                      style={{ 
-                        fontFamily: '"Titillium Web", sans-serif', 
-                        fontWeight: 700,
-                        textShadow: '0 2px 6px rgba(0,0,0,0.9), -1px 0 0 rgba(0, 229, 255, 0.5), 1px 0 0 rgba(255, 0, 85, 0.5)'
-                      }}
-                    >
-                      {trainer.name}
-                    </h3>
-                    <p 
-                      className="text-[0.82rem] text-pear font-semibold font-body tracking-wider uppercase mb-5 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-75"
-                      style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}
-                    >
-                      {trainer.tagline}
-                    </p>
-                    <div className="flex items-center gap-6 mt-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-150">
-                      <a 
-                        href={trainer.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-white/80 hover:text-pear hover:scale-115 transform transition-all duration-300 flex items-center justify-center"
-                        aria-label={`${trainer.name} Instagram`}
-                      >
-                        <InstagramIcon className="w-7 h-7" />
-                      </a>
-                      <a 
-                        href={trainer.mail}
-                        className="text-white/80 hover:text-pear hover:scale-115 transform transition-all duration-300 flex items-center justify-center"
-                        aria-label={`Email ${trainer.name}`}
-                      >
-                        <Mail className="w-7 h-7" />
-                      </a>
-                      <a 
-                        href={trainer.whatsapp}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-white/80 hover:text-pear hover:scale-115 transform transition-all duration-300 flex items-center justify-center"
-                        aria-label={`${trainer.name} WhatsApp`}
-                      >
-                        <WhatsappIcon className="w-8 h-8" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
+              {trainers.map((trainer) => trainerCard(trainer, 'set2'))}
             </div>
           </div>
         </div>
