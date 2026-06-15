@@ -271,7 +271,7 @@ export default function TrainersSection() {
           </div>
 
           <h2
-            className="leading-[1.0] text-rich-black mb-4.5 uppercase tracking-[-0.01em]"
+            className="leading-[1.0] text-rich-black mb-6 uppercase tracking-[-0.01em]"
             style={{ fontFamily: '"Titillium Web", sans-serif', fontWeight: 900, fontSize: 'clamp(2.2rem,4vw,3.5rem)' }}
           >
             OUR EXPERT <span className="text-pear">COACHES</span>

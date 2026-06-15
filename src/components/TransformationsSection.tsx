@@ -133,7 +133,7 @@ export default function TransformationsSection() {
   return (
     <section
       id="transformations"
-      className="bg-white border-b border-celeste/20 lg:h-screen flex flex-col justify-center pt-10 pb-10 lg:pt-16 lg:pb-12 relative overflow-hidden"
+      className="bg-white border-b border-celeste/20 lg:min-h-[85vh] flex flex-col justify-center pt-8 pb-8 lg:pt-10 lg:pb-10 relative overflow-hidden"
       aria-label="Transformations"
     >
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-10 relative z-10">
