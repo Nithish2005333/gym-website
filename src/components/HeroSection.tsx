@@ -91,7 +91,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col lg:overflow-hidden bg-ceiling-white lg:bg-[url('/hero-bg.png')] bg-center bg-no-repeat lg:bg-[length:90%]"
+      className="relative min-h-screen flex flex-col lg:overflow-hidden bg-ceiling-white lg:bg-[url('/hero-bg.png')] bg-center bg-no-repeat lg:bg-cover"
       aria-label="Hero"
     >
       <div
